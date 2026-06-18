@@ -47,19 +47,14 @@ async function main(){
     document.getElementById('status').innerText =
       'Save User';
 
-    await fetch(
-      API_URL,
-      {
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify({
-          userId: profile.userId,
-          name: profile.displayName
-        })
-      }
-    );
+    const url =
+  API_URL +
+  '?userId=' +
+  encodeURIComponent(profile.userId) +
+  '&name=' +
+  encodeURIComponent(profile.displayName);
+
+await fetch(url);
 
     document.getElementById('status').innerText =
       'Success\n' +
